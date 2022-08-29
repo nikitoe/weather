@@ -11,23 +11,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class jdbcMemoRepository {
+public class JdbcMemoRepository {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public jdbcMemoRepository(DataSource dataSource){
-        jdbcTemplate = new JdbcTemplate();
+    public JdbcMemoRepository(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
 
-
-    public Memo save(Memo memo){
+    public Memo save(Memo memo) {
         String sql = "insert into memo value(?,?)";
         jdbcTemplate.update(sql, memo.getId(), memo.getText());
         return memo;
     }
 
-    public List<Memo> findAll(){
+    public List<Memo> findAll() {
         String sql = "select * from memo";
         return jdbcTemplate.query(sql, memoRowMapper());
     }
@@ -37,7 +36,7 @@ public class jdbcMemoRepository {
         return jdbcTemplate.query(sql, memoRowMapper(), id).stream().findFirst();
     }
 
-    private RowMapper<Memo> memoRowMapper(){
+    private RowMapper<Memo> memoRowMapper() {
 
         return (rs, rowNum) -> new Memo(
                 rs.getInt("id"),
