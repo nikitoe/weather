@@ -16,23 +16,11 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "diary")
-public class Diary {
+@Entity(name="date_weather")
+public class DateWeather {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private LocalDate date;
     private String weather;
     private String icon;
     private double temperature;
-    private String text;
-    private LocalDate date;
-
-    public void setDateWeather(DateWeather dateWeather) {
-        this.date = dateWeather.getDate();
-        this.weather = dateWeather.getWeather();
-        this.icon = dateWeather.getIcon();
-        this.temperature = dateWeather.getTemperature();
-
-    }
-
 }
