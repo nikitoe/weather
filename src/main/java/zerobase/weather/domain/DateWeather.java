@@ -1,5 +1,6 @@
 package zerobase.weather.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,15 @@ import java.time.LocalDate;
 @Entity(name="date_weather")
 public class DateWeather {
     @Id
+    @ApiModelProperty(example = "날짜")
     private LocalDate date;
+
+    @ApiModelProperty(example = "날씨 정보")
     private String weather;
+
+    @ApiModelProperty(example = "날씨 정보 그림")
     private String icon;
+
+    @ApiModelProperty(example = "날씨 온도")
     private double temperature;
 }
